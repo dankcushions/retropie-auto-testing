@@ -24,8 +24,8 @@ RETROARCH_CFG="$CONFIG_PATH/all/retroarch.cfg"
 SYSTEM_CFG="$CONFIG_PATH/$SYSTEM/retroarch.cfg"
 # Location of Core binary. Hardcoded as SNES for now. Eventually get in same way as runcommand. ALSO MAKE SURE IT'S LIBRETRO!
 CORE="/opt/retropie/libretrocores/lr-snes9x2010/snes9x2010_libretro.so"
-# Time to let game run
-LOOP_LENGTH=10
+# Frames to let game run
+FRAMES=600
 
 # Get permitted file extensions
 # For now, hardcoded for SNES
@@ -49,9 +49,11 @@ done
 for GAME in "${SYSTEM_GAMES[@]}"; do
     GAME_PATH="$SYSTEM_PATH/$GAME"
     echo $GAME_PATH
-    #echo timeout $LOOP_LENGTH $RUNCOMMAND 0 _SYS_ $SYSTEM $GAME_PATH
+    # Launch game with frame limit
+    $RETROARCH -L $CORE --verbose --max-frames=$FRAMES --config $SYSTEM_CFG "$GAME_PATH"
     # Launch game with timeout
-    timeout $LOOP_LENGTH $RETROARCH -L $CORE --verbose --config $SYSTEM_CFG "$GAME_PATH"
+    #echo timeout $LOOP_LENGTH $RUNCOMMAND 0 _SYS_ $SYSTEM $GAME_PATH
+    #timeout $LOOP_LENGTH $RETROARCH -L $CORE --verbose --config $SYSTEM_CFG "$GAME_PATH"
     #timeout $LOOP_LENGTH $RUNCOMMAND 0 _SYS_ $SYSTEM "$GAME_PATH"
 done
 
