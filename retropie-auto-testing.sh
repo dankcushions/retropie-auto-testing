@@ -17,7 +17,7 @@ echo $SYSTEM
 # Initialise variables
 ROOT_PATH="/home/pi/RetroPie/roms"
 SYSTEM_PATH="$ROOT_PATH/$SYSTEM"
-CONFIG_PATH="/opt/retropie/config"
+CONFIG_PATH="/opt/retropie/configs"
 RUNCOMMAND="/home/pi/RetroPie-Setup/scriptmodules/supplementary/runcommand/runcommand.sh"
 RETROARCH="/opt/retropie/emulators/retroarch/bin/retroarch"
 RETROARCH_CFG="$CONFIG_PATH/all/retroarch.cfg"
